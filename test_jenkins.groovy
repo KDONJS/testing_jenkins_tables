@@ -10,7 +10,7 @@ pipeline {
             steps {
                 echo 'EJECUTANDO DDL'
 
-                bat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost productosplazavea -e \"SHOW TABLES;\""
+                bat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost \"SHOW DATABASES;\""
             }
         }
     
@@ -19,7 +19,9 @@ pipeline {
 
                 withCredentials([string(credentialsId: '1', variable: 'DB_PASSWORD')]) {
 
-                    bat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost productosplazavea < DDL_CREATE_TABLE.sql"
+                    // bat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost productosplazavea < DDL_CREATE_TABLE.sql"
+                    
+                    bat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost \"SHOW DATABASES;\""
 
                 }
             }
