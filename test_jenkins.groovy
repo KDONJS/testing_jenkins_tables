@@ -10,7 +10,7 @@ pipeline {
             steps {
                 echo 'EJECUTANDO DDL'
 
-                //bat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost \"SHOW DATABASES;\""
+                //SSSbat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost \"SHOW DATABASES;\""
             }
         }
     
