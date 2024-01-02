@@ -14,7 +14,10 @@ pipeline {
             steps { 
 
                 withCredentials([string(credentialsId: '1', variable: 'DB_PASSWORD')]) {
-                    sh "mysql -u ROOT -p ${DB_PASSWORD} -h localhost productosplazavea < ./DDL_CREATE_TABLE.sql"
+                    sh """
+                    set +x
+                    mysql -u ROOT -p ${DB_PASSWORD} -h localhost productosplazavea < ./DDL_CREATE_TABLE.sql
+                    """
                 }
             }
         }
