@@ -9,6 +9,8 @@ pipeline {
         stage('Preparation') {
             steps {
                 echo 'EJECUTANDO DDL'
+
+                bat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost productosplazavea -e \"SHOW TABLES;\""
             }
         }
     
