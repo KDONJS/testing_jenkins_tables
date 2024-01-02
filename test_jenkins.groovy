@@ -1,6 +1,6 @@
 import groovy.sql.Sql
 
-def username = 'Jenkins'
+def username = 'root'
 
 pipeline {
     agent any
@@ -18,11 +18,14 @@ pipeline {
             steps { 
 
                 withCredentials([string(credentialsId: '1', variable: 'DB_PASSWORD')]) {
+                    script {
+                        def dbUrl = 'jdbc:mysql://localhost:3306/productosplazavea'
+                        def user = ${username}
+                        def password = DB_PASSWORD
+                        def sql = Sql.newInstance(dbUrl, user, password, 'com.mysql.cj.jdbc.Driver')
 
-                    // bat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost productosplazavea < DDL_CREATE_TABLE.sql"
-
-                    bat "dir"
-
+                        sql.execute('CREATE TABLE empleados (id INT PRIMARY KEY, nombre VARCHAR(100), edad INT, departamento VARCHAR(100))')
+                    }
                 }
             }
         }
