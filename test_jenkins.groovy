@@ -1,10 +1,12 @@
 import groovy.sql.Sql
 
+def username = 'root'
+
 pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Preparation') {
             steps {
                 echo 'EJECUTANDO DDL'
             }
@@ -16,7 +18,7 @@ pipeline {
                 withCredentials([string(credentialsId: '1', variable: 'DB_PASSWORD')]) {
                     sh """
                     set +x
-                    mysql -u ROOT -p ${DB_PASSWORD} -h localhost productosplazavea < ./DDL_CREATE_TABLE.sql
+                    mysql -u ${username} -p ${DB_PASSWORD} -h localhost productosplazavea < ./DDL_CREATE_TABLE.sql
                     """
                 }
             }
