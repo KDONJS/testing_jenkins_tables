@@ -11,16 +11,19 @@ pipeline {
         }
     
         stage('Execute SQL Script') {
-            steps {
-                script {
+            steps { 
 
-                    def sql = Sql.newInstance("jdbc:mysql://localhost:3306/productosplazavea", "root",  DB_PASSWORD , "com.mysql.jdbc.Driver")
+                withCredentials([string(credentialsId: '1', variable: 'DB_PASSWORD')]) {
+                    script {
 
-                    def script = readFile('./DDL_CREATE_TABLE.sql')
+                        def sql = Sql.newInstance("jdbc:mysql://localhost:3306/productosplazavea", "root",  DB_PASSWORD , "com.mysql.jdbc.Driver")
 
-                    sql.execute(script)
+                        def script = readFile('./DDL_CREATE_TABLE.sql')
 
-                    sql.close()
+                        sql.execute(script)
+
+                        sql.close()
+                    }
                 }
             }
         }
