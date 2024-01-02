@@ -22,9 +22,13 @@ pipeline {
                         def dbUrl = 'jdbc:mysql://localhost:3306/productosplazavea'
                         def user = username
                         def password = DB_PASSWORD
-                        def sql = Sql.newInstance(dbUrl, user, password, 'com.mysql.cj.jdbc.Driver')
+                        def sqlString = 'CREATE TABLE empleados (id INT PRIMARY KEY, nombre VARCHAR(100), edad INT, departamento VARCHAR(100))'
 
-                        sql.execute('CREATE TABLE empleados (id INT PRIMARY KEY, nombre VARCHAR(100), edad INT, departamento VARCHAR(100))')
+                        def conn = DriverManager.getConnection(dbUrl, username, password)
+                        def stmt = conn.createStatement()
+                        stmt.execute(sqlString)
+                        stmt.close()
+                        conn.close()
                     }
                 }
             }
