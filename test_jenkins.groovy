@@ -1,6 +1,6 @@
 import groovy.sql.Sql
 
-def username = 'root'
+def username = 'Jenkins'
 
 pipeline {
     agent any
@@ -16,9 +16,9 @@ pipeline {
             steps { 
 
                 withCredentials([string(credentialsId: '1', variable: 'DB_PASSWORD')]) {
-                    sh """
-                    ls -l
-                    mysql -u ${username} -p '$DB_PASSWORD' -h 192.168.56.1 -P 3306 < DDL_CREATE_TABLE.sql
+                    bat """
+                    set +x
+                    mysql -u ${username} -p ${DB_PASSWORD} -h localhost productosplazavea < ./DDL_CREATE_TABLE.sql
                     """
                 }
             }
