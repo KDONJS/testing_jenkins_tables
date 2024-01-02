@@ -21,7 +21,7 @@ pipeline {
 
                     // bat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost productosplazavea < DDL_CREATE_TABLE.sql"
 
-                    bat "mysql -u ${username} -p '%DB_PASSWORD%' -h localhost \"SHOW DATABASES;\""
+                    bat "ls"
 
                 }
             }
