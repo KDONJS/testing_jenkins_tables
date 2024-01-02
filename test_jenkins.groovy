@@ -1,4 +1,4 @@
-import groovy.sql.Sql
+import java.sql.DriverManager
 
 def username = 'root'
 
