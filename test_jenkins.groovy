@@ -17,7 +17,7 @@ pipeline {
 
                 withCredentials([string(credentialsId: '1', variable: 'DB_PASSWORD')]) {
                     sh """
-                    mysql -u ${username} -p '$DB_PASSWORD' -h host.docker.internal -P 3306 < ./DDL_CREATE_TABLE.sql
+                    mysql -u ${username} -p '$DB_PASSWORD' -h 192.168.56.1 -P 3306 < ./DDL_CREATE_TABLE.sql
                     """
                 }
             }
