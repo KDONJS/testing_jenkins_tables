@@ -1,3 +1,5 @@
+import groovy.sql.Sql
+
 pipeline {
     agent any
 
@@ -11,7 +13,7 @@ pipeline {
         stage('Execute SQL Script') {
             steps {
                 script {
-                    
+
                     def sql = Sql.newInstance("jdbc:mysql://localhost:3306/productosplazavea", "root",  DB_PASSWORD , "com.mysql.jdbc.Driver")
 
                     def script = readFile('./DDL_CREATE_TABLE.sql')
