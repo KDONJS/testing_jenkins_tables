@@ -18,7 +18,7 @@ pipeline {
                 withCredentials([string(credentialsId: '1', variable: 'DB_PASSWORD')]) {
                     sh """
                     set +x
-                    mysql -u ${username} -p ${DB_PASSWORD} -h localhost productosplazavea < ./DDL_CREATE_TABLE.sql
+                    mysql -u ${username} -p'$DB_PASSWORD' -h localhost -P 3306 < ./DDL_CREATE_TABLE.sql
                     """
                 }
             }
