@@ -20,7 +20,7 @@ pipeline {
                 withCredentials([string(credentialsId: '1', variable: 'DB_PASSWORD')]) {
                     script {
                         def dbUrl = 'jdbc:mysql://localhost:3306/productosplazavea'
-                        def user = ${username}
+                        def user = username
                         def password = DB_PASSWORD
                         def sql = Sql.newInstance(dbUrl, user, password, 'com.mysql.cj.jdbc.Driver')
 
